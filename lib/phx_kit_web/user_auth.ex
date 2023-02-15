@@ -156,7 +156,7 @@ defmodule PhxKitWeb.UserAuth do
       socket =
         socket
         |> Phoenix.LiveView.put_flash(:error, "You must log in to access this page.")
-        |> Phoenix.LiveView.redirect(to: ~p"/users/log_in")
+        |> Phoenix.LiveView.redirect(to: ~p"/auth/log_in")
 
       {:halt, socket}
     end
@@ -210,7 +210,7 @@ defmodule PhxKitWeb.UserAuth do
       conn
       |> put_flash(:error, "You must log in to access this page.")
       |> maybe_store_return_to()
-      |> redirect(to: ~p"/users/log_in")
+      |> redirect(to: ~p"/auth/log_in")
       |> halt()
     end
   end

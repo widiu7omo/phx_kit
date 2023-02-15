@@ -2,10 +2,10 @@
   User <%= @user.id %>
   <:subtitle>This is a user record from your database.</:subtitle>
   <:actions>
-    <.link href={~p"/users/#{@user}/edit"}>
+    <.link href={~p"/admin/users/#{@user}/edit"}>
       <.button>Edit user</.button>
     </.link>
-    <.link href={~p"/users/#{@user}/edit"}>
+    <.link href={~p"/admin/users/#{@user}/edit"}>
       <.button>Change user password</.button>
     </.link>
   </:actions>
@@ -17,4 +17,4 @@
   <:item title="Confirmed at"><%= @user.confirmed_at %></:item>
 </.list>
 
-<.back navigate={~p"/users"}>Back to users</.back>
+<.back navigate={~p"/admin/users"}>Back to users</.back>

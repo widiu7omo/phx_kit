@@ -14,7 +14,10 @@ defmodule PhxKitWeb.UserController do
 
   def new(conn, _params) do
     changeset = Admins.change_user(%User{})
-    render(conn, :new, changeset: changeset)
+
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :admin})
+    |> render(:new, changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -22,22 +25,30 @@ defmodule PhxKitWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: ~p"/users/#{user}")
+        |> redirect(to: ~p"/admin/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        conn
+        |> put_layout({PhxKitWeb.Layouts, :admin})
+        |> render(:new, changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
     user = Admins.get_user!(id)
-    render(conn, :show, user: user)
+
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :admin})
+    |> render(:show, user: user)
   end
 
   def edit(conn, %{"id" => id}) do
     user = Admins.get_user!(id)
     changeset = Admins.change_user(user)
-    render(conn, :edit, user: user, changeset: changeset)
+
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :admin})
+    |> render(:edit, user: user, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
@@ -47,10 +58,12 @@ defmodule PhxKitWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: ~p"/users/#{user}")
+        |> redirect(to: ~p"/admin/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :edit, user: user, changeset: changeset)
+        conn
+        |> put_layout({PhxKitWeb.Layouts, :admin})
+        |> render(:edit, user: user, changeset: changeset)
     end
   end
 
@@ -60,6 +73,6 @@ defmodule PhxKitWeb.UserController do
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: ~p"/users")
+    |> redirect(to: ~p"/admin/users")
   end
 end

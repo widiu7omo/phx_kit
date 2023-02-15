@@ -21,9 +21,19 @@ defmodule PhxKitWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+  end
+
+  scope "/", PhxKitWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
     get "/admin", PageController, :admin
-    get "/app", PageController, :app
     resources "/admin/users", UserController
+  end
+
+  scope "/", PhxKitWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/app", PageController, :app
   end
 
   # Other scopes may use custom stacks.
