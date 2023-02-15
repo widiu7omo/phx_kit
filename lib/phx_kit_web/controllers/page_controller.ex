@@ -6,4 +6,16 @@ defmodule PhxKitWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def admin(conn, _params) do
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :admin})
+    |> render(:admin_home)
+  end
+
+  def app(conn, _params) do
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :app})
+    |> render(:app_home)
+  end
 end
