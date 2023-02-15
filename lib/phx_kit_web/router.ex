@@ -67,20 +67,20 @@ defmodule PhxKitWeb.Router do
 
     live_session :require_authenticated_user,
       on_mount: [{PhxKitWeb.UserAuth, :ensure_authenticated}] do
-      live "/users/settings", UserSettingsLive, :edit
-      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/profile/settings", UserSettingsLive, :edit
+      live "/profile/settings/confirm_email/:token", UserSettingsLive, :confirm_email
     end
   end
 
   scope "/", PhxKitWeb do
     pipe_through [:browser]
 
-    delete "/users/log_out", UserSessionController, :delete
+    delete "/auth/log_out", UserSessionController, :delete
 
     live_session :current_user,
       on_mount: [{PhxKitWeb.UserAuth, :mount_current_user}] do
-      live "/users/confirm/:token", UserConfirmationLive, :edit
-      live "/users/confirm", UserConfirmationInstructionsLive, :new
+      live "/auth/confirm/:token", UserConfirmationLive, :edit
+      live "/auth/confirm", UserConfirmationInstructionsLive, :new
     end
   end
 end

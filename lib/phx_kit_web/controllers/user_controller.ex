@@ -1,12 +1,15 @@
 defmodule PhxKitWeb.UserController do
-  use PhxKitWeb, :controller
+  use PhxKitWeb, :controller_admin
 
   alias PhxKit.Admins
   alias PhxKit.Accounts.User
 
   def index(conn, _params) do
     users = Admins.list_users()
-    render(conn, :index, users: users)
+
+    conn
+    |> put_layout({PhxKitWeb.Layouts, :admin})
+    |> render(:index, users: users)
   end
 
   def new(conn, _params) do

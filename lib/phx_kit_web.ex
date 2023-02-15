@@ -36,6 +36,20 @@ defmodule PhxKitWeb do
     end
   end
 
+  def controller_admin do
+    quote do
+      use Phoenix.Controller,
+        namespace: PhxKitWeb,
+        formats: [:html, :json],
+        layouts: [html: PhxKitWeb.Layouts]
+
+      import Plug.Conn
+      import PhxKitWeb.Gettext
+
+      unquote(verified_routes())
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller,
@@ -54,6 +68,15 @@ defmodule PhxKitWeb do
     quote do
       use Phoenix.LiveView,
         layout: {PhxKitWeb.Layouts, :app}
+
+      unquote(html_helpers())
+    end
+  end
+
+  def live_view_profile do
+    quote do
+      use Phoenix.LiveView,
+        layout: {PhxKitWeb.Layouts, :profile}
 
       unquote(html_helpers())
     end

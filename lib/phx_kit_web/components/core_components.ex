@@ -193,9 +193,12 @@ defmodule PhxKitWeb.CoreComponents do
     <.form :let={f} for={@for} as={@as} {@rest}>
       <div class="space-y-8 bg-white">
         <%= render_slot(@inner_block, f) %>
-        <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
-          <%= render_slot(action, f) %>
-        </div>
+      </div>
+      <div
+        :for={action <- @actions}
+        class="mt-6 gap-6 -mx-6 -mb-6 px-6 py-3 bg-gray-50 text-right sm:px-6"
+      >
+        <%= render_slot(action, f) %>
       </div>
     </.form>
     """
@@ -409,7 +412,7 @@ defmodule PhxKitWeb.CoreComponents do
         <h1 class="text-lg font-semibold leading-8 text-zinc-800">
           <%= render_slot(@inner_block) %>
         </h1>
-        <p :if={@subtitle != []} class="mt-2 text-sm leading-6 text-zinc-600">
+        <p :if={@subtitle != []} class=" text-sm leading-6 text-zinc-600">
           <%= render_slot(@subtitle) %>
         </p>
       </div>
