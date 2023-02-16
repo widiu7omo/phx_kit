@@ -8,14 +8,10 @@ defmodule PhxKitWeb.PageController do
   end
 
   def admin(conn, _params) do
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :admin})
-    |> render(:admin_home)
+    render(conn, :admin_home, layout: {PhxKitWeb.Layouts, :admin})
   end
 
   def app(conn, _params) do
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :app})
-    |> render(:app_home)
+    render(conn, :app_home, layout: {PhxKitWeb.Layouts, :admin})
   end
 end

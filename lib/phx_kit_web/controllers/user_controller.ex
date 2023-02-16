@@ -1,23 +1,18 @@
 defmodule PhxKitWeb.UserController do
   use PhxKitWeb, :controller_admin
-
   alias PhxKit.Admins
   alias PhxKit.Accounts.User
 
+  @spec index(any, any) :: none
   def index(conn, _params) do
     users = Admins.list_users()
 
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :admin})
-    |> render(:index, users: users)
+    render(conn, :index, users: users, layout: {PhxKitWeb.Layouts, :admin})
   end
 
   def new(conn, _params) do
     changeset = Admins.change_user(%User{})
-
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :admin})
-    |> render(:new, changeset: changeset)
+    render(conn, :new, changeset: changeset, layout: {PhxKitWeb.Layouts, :admin})
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -28,27 +23,19 @@ defmodule PhxKitWeb.UserController do
         |> redirect(to: ~p"/admin/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        conn
-        |> put_layout({PhxKitWeb.Layouts, :admin})
-        |> render(:new, changeset: changeset)
+        render(conn, :new, changeset: changeset, layout: {PhxKitWeb.Layouts, :admin})
     end
   end
 
   def show(conn, %{"id" => id}) do
     user = Admins.get_user!(id)
-
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :admin})
-    |> render(:show, user: user)
+    render(conn, :show, user: user, layout: {PhxKitWeb.Layouts, :admin})
   end
 
   def edit(conn, %{"id" => id}) do
     user = Admins.get_user!(id)
     changeset = Admins.change_user(user)
-
-    conn
-    |> put_layout({PhxKitWeb.Layouts, :admin})
-    |> render(:edit, user: user, changeset: changeset)
+    render(conn, :edit, user: user, changeset: changeset, layout: {PhxKitWeb.Layouts, :admin})
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
@@ -61,9 +48,7 @@ defmodule PhxKitWeb.UserController do
         |> redirect(to: ~p"/admin/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        conn
-        |> put_layout({PhxKitWeb.Layouts, :admin})
-        |> render(:edit, user: user, changeset: changeset)
+        render(conn, :edit, user: user, changeset: changeset, layout: {PhxKitWeb.Layouts, :admin})
     end
   end
 

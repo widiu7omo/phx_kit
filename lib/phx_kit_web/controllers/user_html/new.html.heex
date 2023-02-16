@@ -7,13 +7,16 @@
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.
   </.error>
-  <.input field={{f, :name}} type="text" label="Name" />
-  <.input field={{f, :email}} type="text" label="Email" />
-  <.input field={{f, :password}} type="text" label="Password" />
-  <.input field={{f, :confirmed_at}} type="datetime-local" label="Confirmed at" />
+  <div class="mt-6 grid grid-cols-2 gap-6">
+    <.input field={{f, :name}} type="text" label="Name" />
+    <.input field={{f, :email}} type="text" label="Email" />
+    <.input field={{f, :password}} type="text" label="Password" />
+    <.input field={{f, :confirmed_at}} type="datetime-local" label="Confirmed at" />
+  </div>
   <:actions>
-    <.button>Save User</.button>
+    <div class="flex flex-row justify-between space-x-4 h-12 items-center">
+      <.back class="!mt-0" navigate={~p"/admin/users"}>Back to users</.back>
+      <.button>Save User</.button>
+    </div>
   </:actions>
 </.simple_form>
-
-<.back navigate={~p"/admin/users"}>Back to users</.back>
