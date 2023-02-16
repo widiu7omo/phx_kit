@@ -118,6 +118,7 @@ defmodule PhxKitWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import PhxKitWeb.CoreComponents
+      import PhxKitWeb.FormComponents
       import PhxKitWeb.Gettext
 
       # Shortcut for generating JS commands

@@ -194,10 +194,7 @@ defmodule PhxKitWeb.CoreComponents do
       <div class="space-y-8 bg-white">
         <%= render_slot(@inner_block, f) %>
       </div>
-      <div
-        :for={action <- @actions}
-        class="mt-6 gap-6 -mx-6 -mb-6 px-6 py-3 bg-gray-50 text-right sm:px-6"
-      >
+      <div :for={action <- @actions} class="mt-6 gap-6 -mb-6 px-6 py-3 -mx-6 text-right sm:px-6">
         <%= render_slot(action, f) %>
       </div>
     </.form>
@@ -524,11 +521,12 @@ defmodule PhxKitWeb.CoreComponents do
       <.back navigate={~p"/posts"}>Back to posts</.back>
   """
   attr :navigate, :any, required: true
+  attr :class, :string, default: nil
   slot :inner_block, required: true
 
   def back(assigns) do
     ~H"""
-    <div class="mt-16">
+    <div class={@class || "mt-16"}>
       <.link
         navigate={@navigate}
         class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
