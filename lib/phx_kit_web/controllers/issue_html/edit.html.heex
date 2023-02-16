@@ -1,0 +1,17 @@
+<.header>
+  Edit Issue <%= @issue.id %>
+  <:subtitle>Use this form to manage issue records in your database.</:subtitle>
+</.header>
+
+<.simple_form :let={f} for={@changeset} method="put" action={~p"/issues/#{@issue}"}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:title]} type="text" label="Title" />
+  <.input field={f[:content]} type="text" label="Content" />
+  <:actions>
+    <.button>Save Issue</.button>
+  </:actions>
+</.simple_form>
+
+<.back navigate={~p"/issues"}>Back to issues</.back>
