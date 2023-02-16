@@ -2,7 +2,7 @@
   Issue <%= @issue.id %>
   <:subtitle>This is a issue record from your database.</:subtitle>
   <:actions>
-    <.link href={~p"/issues/#{@issue}/edit"}>
+    <.link href={~p"/admin/issues/#{@issue}/edit"}>
       <.button>Edit issue</.button>
     </.link>
   </:actions>
@@ -13,4 +13,4 @@
   <:item title="Content"><%= @issue.content %></:item>
 </.list>
 
-<.back navigate={~p"/issues"}>Back to issues</.back>
+<.back navigate={~p"/admin/issues"}>Back to issues</.back>

@@ -20,4 +20,19 @@ defmodule PhxKit.AdminsFixtures do
 
     user
   end
+
+  @doc """
+  Generate a issue.
+  """
+  def issue_fixture(attrs \\ %{}) do
+    {:ok, issue} =
+      attrs
+      |> Enum.into(%{
+        content: "some content",
+        title: "some title"
+      })
+      |> PhxKit.Admins.create_issue()
+
+    issue
+  end
 end

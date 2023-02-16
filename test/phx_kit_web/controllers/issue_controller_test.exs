@@ -1,7 +1,7 @@
 defmodule PhxKitWeb.IssueControllerTest do
   use PhxKitWeb.ConnCase
 
-  import PhxKit.MaintenanceFixtures
+  import PhxKit.AdminsFixtures
 
   @create_attrs %{content: "some content", title: "some title"}
   @update_attrs %{content: "some updated content", title: "some updated title"}

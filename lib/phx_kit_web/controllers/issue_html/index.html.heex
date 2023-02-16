@@ -1,23 +1,23 @@
 <.header>
   Listing Issues
   <:actions>
-    <.link href={~p"/issues/new"}>
+    <.link href={~p"/admin/issues/new"}>
       <.button>New Issue</.button>
     </.link>
   </:actions>
 </.header>
 
-<.table id="issues" rows={@issues} row_click={&JS.navigate(~p"/issues/#{&1}")}>
+<.table id="issues" rows={@issues} row_click={&JS.navigate(~p"/admin/issues/#{&1}")}>
   <:col :let={issue} label="Title"><%= issue.title %></:col>
   <:col :let={issue} label="Content"><%= issue.content %></:col>
   <:action :let={issue}>
     <div class="sr-only">
-      <.link navigate={~p"/issues/#{issue}"}>Show</.link>
+      <.link navigate={~p"/admin/issues/#{issue}"}>Show</.link>
     </div>
-    <.link navigate={~p"/issues/#{issue}/edit"}>Edit</.link>
+    <.link navigate={~p"/admin/issues/#{issue}/edit"}>Edit</.link>
   </:action>
   <:action :let={issue}>
-    <.link href={~p"/issues/#{issue}"} method="delete" data-confirm="Are you sure?">
+    <.link href={~p"/admin/issues/#{issue}"} method="delete" data-confirm="Are you sure?">
       Delete
     </.link>
   </:action>

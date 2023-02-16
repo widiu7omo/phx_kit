@@ -28,6 +28,7 @@ defmodule PhxKitWeb.Router do
 
     get "/admin", PageController, :admin
     resources "/admin/users", UserController
+    resources "/admin/issues", IssueController
   end
 
   scope "/", PhxKitWeb do

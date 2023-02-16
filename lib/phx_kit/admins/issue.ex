@@ -1,4 +1,4 @@
-defmodule PhxKit.Maintenance.Issue do
+defmodule PhxKit.Admins.Issue do
   use Ecto.Schema
   import Ecto.Changeset
 
