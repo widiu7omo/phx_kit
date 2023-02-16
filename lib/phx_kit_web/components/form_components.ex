@@ -3,8 +3,6 @@ defmodule PhxKitWeb.FormComponents do
   Form components
   """
   use Phoenix.Component
-  alias Phoenix.LiveView.JS
-  import PhxKitWeb.Gettext
   import PhxKitWeb.HelperComponents
 
   embed_templates "commons/form/*"
@@ -23,9 +21,6 @@ defmodule PhxKitWeb.FormComponents do
   def input_date(%{field: {f, field}} = assigns) do
     assigns
     |> assign(field: nil)
-    |> assign_new(:name, fn ->
-      name = Phoenix.HTML.Form.input_name(f, field)
-    end)
     |> assign_new(:id, fn -> Phoenix.HTML.Form.input_id(f, field) end)
     |> assign_new(:value, fn -> Phoenix.HTML.Form.input_value(f, field) end)
     |> assign_new(:errors, fn -> translate_errors(f.errors || [], field) end)
